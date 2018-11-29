@@ -1,0 +1,170 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SMILES COMPARE</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.3/noty.css" rel="stylesheet">
+<script src="https://unpkg.com/smiles-drawer@1.0.2/dist/smiles-drawer.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.3/noty.min.js"></script>
+<link rel="icon" type="image/x-icon" href="metlab.ico" />
+</head>
+<body>
+<div id="wrapper1">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo"> <img src='1.png' width = '200' height = '124' >
+				<h1><a href="index.html"><span>S</span>miles<span>C</span>OMPARE</a></h1>
+				<span>Design by <a href="这里写Wiki网址" rel="nofollow">SJTU-software</a></span> </div>
+			<div id="menu">
+				<ul>
+					<li><a href="index.html" accesskey="1" title="">Homepage</a></li>
+					<li><a href="sbml_drawer.html" accesskey="2" title="">SBML Drawer</a></li>
+					<li><a href="sbml_differ.html" accesskey="3" title="">SBML Differ</a></li>
+					<li><a href="met_differ.html" accesskey="4" title="">MET Differ</a></li>
+					<li class="current_page_item"><a href="smiles_drawer.html" accesskey="5" title="">SMILES Drawer</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="wrapper2">
+		<div id="welcome" class="container">
+  <div class="input-container">
+    
+    <h1>Enter SMILES</h1>
+	<form enctype="multipart/form-data" method="post" action="smiles_compare.php">
+    <input id="input" type="text" class="content-a-upload" placeholder="Enter the first SMILES" name = "smiles1"/>
+	<input id="input" type="text" class="content-a-upload" placeholder="Enter the second SMILES" name = "smiles2"/>
+	<div class = "content-a-upload" style="color:black" >
+								Compare <input type="submit" value="upload"/>
+							</div>
+	
+    <div id="log">&nbsp;</div>
+  </div>
+
+  <div class="canvas-container">
+    <canvas id="output-canvas" width="500" height="500"></canvas>
+  </div>
+
+
+
+  <script>
+    var input = document.getElementById('input');
+    var debugCheckbox = document.getElementById('debug');
+    var bondThicknessInput = document.getElementById('bondThickness')
+    var textSizeInput = document.getElementById('textSize');
+    var bondLengthInput = document.getElementById('bondLength');
+    var shortBondLengthInput = document.getElementById('shortBondLength');
+    var bondSpacingInput = document.getElementById('bondSpacing');
+    var sizeInput = document.getElementById('size');
+    var overlapInput = document.getElementById('overlap');
+
+    var options = {
+      debug: false,
+      atomVisualization: 'default'
+    }
+
+    var smilesDrawer = new SmilesDrawer.Drawer(options);
+    var input = document.getElementById('input');
+    var log = document.getElementById('log');
+
+    function draw() {
+      let t = performance.now();
+
+      SmilesDrawer.parse(input.value, function (tree) {
+        smilesDrawer.draw(tree, 'output-canvas', 'light', false);
+        let td = performance.now() - t;
+        log.innerHTML = '&nbsp;';
+        log.style.visibility = 'hidden';
+
+        new Noty({
+          text: 'Drawing took ' + td.toFixed(3) + 'ms with a total overlap score of ' + smilesDrawer.getTotalOverlapScore().toFixed(3) + '.',
+          killer: true,
+          timeout: 2000,
+          animation: {
+            open: null,
+            close: null
+          }
+        }).show();
+      }, function (err) {
+        log.innerHTML = err;
+        log.style.visibility = 'visible';
+        console.log(err);
+      });      
+    }
+
+    function updateOptions() {
+      smilesDrawer = new SmilesDrawer.Drawer(options);
+      draw();
+    }
+
+    document.addEventListener('DOMContentLoaded', function (event) {
+      input.addEventListener('input', function () {
+        draw();
+      });
+
+      debugCheckbox.addEventListener('click', function () {
+        options.debug = debugCheckbox.checked ? true : false;
+        updateOptions();
+      });
+
+      textSizeInput.addEventListener('input', function () {
+        options.fontSizeLarge = parseInt(textSizeInput.value);
+        options.fontSizeSmall = (3 / 5) * options.fontSizeLarge;
+        updateOptions();
+      });
+
+      bondThicknessInput.addEventListener('input', function () {
+        options.bondThickness = parseFloat(bondThicknessInput.value);
+        updateOptions();
+      });
+
+      bondLengthInput.addEventListener('input', function () {
+        options.bondLength = parseInt(bondLengthInput.value);
+        updateOptions();
+      });
+
+      shortBondLengthInput.addEventListener('input', function () {
+        options.shortBondLength = parseInt(shortBondLengthInput.value) / 100;
+        updateOptions();
+      });
+
+      bondSpacingInput.addEventListener('input', function () {
+        options.bondSpacing = parseInt(bondSpacingInput.value);
+        updateOptions();
+      });
+
+      sizeInput.addEventListener('input', function () {
+        options.width = parseInt(sizeInput.value);
+        options.height = parseInt(sizeInput.value);
+        updateOptions();
+      });
+
+      overlapInput.addEventListener('input', function () {
+        options.overlapResolutionIterations = parseInt(overlapInput.value);
+        updateOptions();
+      });
+    });
+  </script>
+
+				<div class="footer-link">
+
+					<p>Copyright © 2018 SJTU SOFTWARE
+
+
+
+                    </p>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
