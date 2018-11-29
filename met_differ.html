@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>MET DIFFER</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="icon" type="image/x-icon" href="metlab.ico" />
+
+</head>
+<body>
+<div id="wrapper1">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo"> <img src='1.png' width = '200' height = '124' >
+				<h1><a href="index.html"><span>M</span>et<span>D</span>iffer</a></h1>
+				<span>Design by <a href="http://2018.igem.org/Team:SJTU-software" rel="nofollow">SJTU-software</a></span> </div>
+			<div id="menu">
+				<ul>
+					<li><a href="index.html" accesskey="1" title="">Homepage</a></li>
+					<li><a href="sbml_drawer.html" accesskey="2" title="">SBML Drawer</a></li>
+					<li><a href="sbml_differ.html" accesskey="3" title="">SBML Differ</a></li>
+					<li class="current_page_item"><a href="met_differ.html" accesskey="4" title="">MET Differ</a></li>
+					<li><a href="smiles_drawer.html" accesskey="5" title="">SMILES Drawer</a></li>
+					<li><a href="dna_editor.html" accesskey="6" title="">DNA Editor</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="wrapper2">
+		<div id="welcome" class="container">
+						<div class="container-fluid">
+
+				<div class="row cb-slideshow-text-container ">
+
+					<div class= "tm-content col-xl-6 col-sm-6 col-xs-6 ml-auto section">
+					<font size="4.5"><P class="mb-5" align = "justify" style="text-indent:1cm;">MET DIFFER allows you to run metabolic network alignment search, in which you can upload your own designed metabolic networks and search for the similar one in model organisms to help with  your design.</P></font>
+
+					<header class="mb-5"><h1>Select species database</h1></header>
+
+					
+						
+			   <form enctype="multipart/form-data" method="post" action="met_differ.php">
+					<div style="text-align:center">
+							<label>&nbsp;</label>
+							<select name = "species">
+								<option>all species</option>
+								<option>iAF692  Methanosarcina barkeri str.</option>
+								<option>iAF987  Geobacter metallireducens GS-15</option>
+								<option>iAF1260 Escherichia coli str.</option>
+								<option>iCHOv1  Cricetulus griseus</option>
+								<option>iECO111_1330  Escherichia coli O111:H- str.</option>
+								<option>iECUMN_1333  Escherichia coli UMN026 </option>
+								<option>iHN637  Clostridium ljungdahlii DSM</option>
+								<option>iIT341  Helicobacter pylori</option>
+								<option>iJB785  Synechococcus elongatus PCC</option>
+								<option>iJN678  Synechocystis sp.</option>
+								<option>iJN746  Pseudomonas putida</option>
+								<option>iLB1027_lipid Phaeodactylum tricornutum CCAP</option>
+								<option>iLJ478  Thermotoga maritima</option>
+								<option>iMM1415 Mus musculus</option>
+								<option>iMM904  Saccharomyces</option>
+								<option>iNF517  Lactococcus lactis subsp. cremoris</option>
+								<option>iNJ661  Mycobacterium tuberculosis H37Rv</option>
+								<option>iPC815  Yersinia pestis</option>
+								<option>iRC1080 Chlamydomonas reinhardtii</option>
+								<option>iSB619  Staphylococcus aureus subsp. aureus</option>
+								<option>iSbBS512_1146 Shigella boydii CDC 3083-94</option>
+								<option>iSBO_1134 Shigella boydii Sb227</option>
+								<option>iSDY_1059 Shigella dysenteriae Sd197</option>
+								<option>iSF_1195  Shigella flexneri 2a str.</option>
+								<option>iSSON_1240  Shigella sonnei Ss046</option>
+								<option>iYO844  Bacillus subtilis subsp. subtilis str.</option>
+								<option>STM_v1_0  Salmonella enterica subsp. enterica serovar Typhimurium str. LT2</option>
+								<option>iYL1228 Klebsiella pneumoniae subsp. pneumoniae MGH</option>
+							</select>
+					</div>
+					
+					
+
+					<div class="content-a-upload" style="color:black" style="text-align:center">
+
+			            Choose your file<input type="file" name="myfile" />
+
+				  	</div>
+
+
+					<div class = "content-a-upload" style="color:black" >
+
+						Upload <input type="submit" value="upload"/>
+
+					</div>
+					
+				</form>
+
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

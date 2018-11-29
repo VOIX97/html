@@ -1,0 +1,1 @@
+You can visualize an SBML file by using SBML drawer. It outputs the result as a picture, and the tool distinguishes the metabolites and reactions by nodes' shape and color. 

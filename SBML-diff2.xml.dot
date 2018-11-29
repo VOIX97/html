@@ -1,0 +1,98 @@
+
+
+
+digraph comparison {
+rankdir = TB;
+
+
+subgraph cluster_cell {
+graph[style=dotted];
+label="cell";
+"PZ" [color="#377eb8",label="cI protein"   , style="bold,"];
+"PX" [color="grey",label="LacI protein"   , style=""];
+"PY" [color="grey",label="TetR protein"   , style=""];
+"Y" [color="grey",label="TetR mRNA"   , style=""];
+"X" [color="grey",label="LacI mRNA"   , style=""];
+"Z" [color="#377eb8",label="cI mRNA"   , style="bold,"];
+Reaction2 [shape="rectangle", color="grey",  label=<degradation of TetR transcripts<br/>(<font color='grey'>IR</font>)> , style=""];
+Y -> Reaction2 [color="grey", style=""];
+kd_mRNA -> Reaction2 [color="grey" , style="dashed"];
+Reaction3 [shape="rectangle", color="#377eb8",  label=<degradation of CI transcripts<br/>(<font color='#377eb8'>IR</font>)> , style="bold,"];
+Z -> Reaction3 [color="#377eb8", style="bold,"];
+kd_mRNA -> Reaction3 [color="#377eb8" , style="bold,dashed"];
+Reaction1 [shape="rectangle", color="grey",  label=<degradation of LacI transcripts<br/>(<font color='grey'>IR</font>)> , style=""];
+X -> Reaction1 [color="grey", style=""];
+kd_mRNA -> Reaction1 [color="grey" , style="dashed"];
+Reaction10 [shape="rectangle", color="grey",  label=<transcription of LacI<br/>(<font color='grey'>IR</font>)> , style="dashed"];
+a0_tr -> Reaction10 [color="grey" , style="dashed"];
+a_tr -> Reaction10 [color="grey" , style="dashed"];
+Reaction10 -> X [color="grey", style=""];
+Reaction7 [shape="rectangle", color="grey",  label=<degradation of LacI<br/>(<font color='grey'>IR</font>)> , style=""];
+PX -> Reaction7 [color="grey", style=""];
+kd_prot -> Reaction7 [color="grey" , style="dashed"];
+Reaction4 [shape="rectangle", color="grey",  label=<translation of LacI<br/>(<font color='grey'>IR</font>)> , style=""];
+k_tl -> Reaction4 [color="grey" , style="dashed"];
+Reaction4 -> PX [color="grey", style=""];
+Reaction5 [shape="rectangle", color="grey",  label=<translation of TetR<br/>(<font color='grey'>IR</font>)> , style=""];
+k_tl -> Reaction5 [color="grey" , style="dashed"];
+Reaction5 -> PY [color="grey", style=""];
+Reaction8 [shape="rectangle", color="grey",  label=<degradation of TetR<br/>(<font color='grey'>IR</font>)> , style=""];
+PY -> Reaction8 [color="grey", style=""];
+kd_prot -> Reaction8 [color="grey" , style="dashed"];
+Reaction9 [shape="rectangle", color="#377eb8",  label=<degradation of CI<br/>(<font color='#377eb8'>IR</font>)> , style="bold,"];
+PZ -> Reaction9 [color="#377eb8", style="bold,"];
+kd_prot -> Reaction9 [color="#377eb8" , style="bold,dashed"];
+Reaction12 [shape="rectangle", color="#377eb8",  label=<transcription of CI<br/>(<font color='#377eb8'>IR</font>)> , style="bold,"];
+a0_tr -> Reaction12 [color="#377eb8" , style="bold,dashed"];
+a_tr -> Reaction12 [color="#377eb8" , style="bold,dashed"];
+Reaction12 -> Z [color="#377eb8", style="bold,"];
+Reaction6 [shape="rectangle", color="#377eb8",  label=<translation of CI<br/>(<font color='#377eb8'>IR</font>)> , style="bold,"];
+k_tl -> Reaction6 [color="#377eb8" , style="bold,dashed"];
+Reaction6 -> PZ [color="#377eb8", style="bold,"];
+Reaction11 [shape="rectangle", color="grey",  label=<transcription of TetR<br/>(<font color='grey'>IR</font>)> , style=""];
+a0_tr -> Reaction11 [color="grey" , style="dashed"];
+a_tr -> Reaction11 [color="grey" , style="dashed"];
+Reaction11 -> Y [color="grey", style=""];
+"X" -> "Reaction4" [color="grey", arrowhead="vee" , style="dashed"];
+"PX" -> "Reaction11" [color="grey", arrowhead="tee" , style="dashed"];
+"PZ" -> "Reaction10" [color="#377eb8", arrowhead="tee" , style="bold,dashed"];
+"Y" -> "Reaction5" [color="grey", arrowhead="vee" , style="dashed"];
+"PY" -> "Reaction12" [color="#377eb8", arrowhead="tee" , style="bold,dashed"];
+"PY" -> "Reaction10" [color="#e41a1c", arrowhead="tee" , style="bold,dashed"];
+"Z" -> "Reaction6" [color="#377eb8", arrowhead="vee" , style="bold,dashed"];
+
+
+}
+rule_k_tl [shape="parallelogram", color="grey",  label="" , style=""];
+rule_k_tl -> k_tl [color="grey", style="dotted" , style=""];
+t_ave -> rule_k_tl [color="grey", arrowhead="tee" , style="dashed"];
+rule_a0_tr [shape="parallelogram", color="grey",  label="" , style=""];
+rule_a0_tr -> a0_tr [color="grey", style="dotted" , style=""];
+rule_t_ave [shape="parallelogram", color="grey",  label="" , style=""];
+rule_t_ave -> t_ave [color="grey", style="dotted" , style=""];
+rule_alpha0 [shape="parallelogram", color="grey",  label="" , style=""];
+rule_alpha0 -> alpha0 [color="grey", style="dotted" , style=""];
+a0_tr -> rule_alpha0 [color="grey", arrowhead="vee" , style="dashed"];
+rule_beta [shape="parallelogram", color="grey",  label="" , style=""];
+rule_beta -> beta [color="grey", style="dotted" , style=""];
+rule_a_tr [shape="parallelogram", color="grey",  label="" , style=""];
+rule_a_tr -> a_tr [color="grey", style="dotted" , style=""];
+rule_kd_prot [shape="parallelogram", color="grey",  label="" , style=""];
+rule_kd_prot -> kd_prot [color="grey", style="dotted" , style=""];
+rule_alpha [shape="parallelogram", color="grey",  label="" , style=""];
+rule_alpha -> alpha [color="grey", style="dotted" , style=""];
+a_tr -> rule_alpha [color="grey", arrowhead="vee" , style="dashed"];
+rule_kd_mRNA [shape="parallelogram", color="grey",  label="" , style=""];
+rule_kd_mRNA -> kd_mRNA [color="grey", style="dotted" , style=""];
+k_tl [label="k_tl", shape=none, color="grey"];
+a0_tr [label="a0_tr", shape=none, color="grey"];
+t_ave [label="average mRNA life time", shape=none, color="grey"];
+alpha0 [label="alpha0", shape=none, color="grey"];
+beta [label="beta", shape=none, color="grey"];
+a_tr [label="a_tr", shape=none, color="grey"];
+kd_prot [label="kd_prot", shape=none, color="grey"];
+alpha [label="alpha", shape=none, color="grey"];
+kd_mRNA [label="kd_mRNA", shape=none, color="grey"];
+label=<Files: <font color='#e41a1c'>SBML-diff2</font>, <font color='#377eb8'>SBML-diff1</font>>;
+}
+
